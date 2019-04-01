@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EasInspector</RootNamespace>
     <AssemblyName>EASInspectorFiddler</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -60,7 +60,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Fiddler">
-      <HintPath>..\..\..\..\Apps\Fiddler2\Fiddler.exe</HintPath>
+      <HintPath>..\Libraries\Fiddler.exe</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ASWBXML">
+      <HintPath>..\Libraries\ASWBXML.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -80,10 +84,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ASCommandResponse.cs" />
-    <Compile Include="ASWBXML.cs" />
-    <Compile Include="ASWBXMLByteQueue.cs" />
-    <Compile Include="ASWBXMLCodePages.cs" />
     <Compile Include="EASInspector.cs" />
     <Compile Include="EASRequestInspector.cs" />
     <Compile Include="EASResponseInspector.cs" />

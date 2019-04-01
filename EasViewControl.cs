@@ -63,7 +63,7 @@ namespace EASView
         /// </summary>
         public void UpdateBrowser()
         {
-            this.browser.DocumentText = EasInspector.InspectorUtilities.GetEmbeddedResourceAsString("EasInspector", "Embedded.BrowserTemplate.html").Replace("##ParsedData##", this.sb.ToString().Replace(@"<?xml version=""1.0"" encoding=""utf-16""?>", ""));
+            this.browser.DocumentText = InspectorUtilities.GetEmbeddedResourceAsString("EasInspector", "Embedded.BrowserTemplate.html").Replace("##ParsedData##", this.sb.ToString().Replace(@"<?xml version=""1.0"" encoding=""utf-16""?>", ""));
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace EASView
             // the TextBox and RichTextBox controls will truncate the display
             if (text.Contains("\0\0"))
             {
-                EasInspector.InspectorUtilities.LogDebug("Cleaning up double null to make sure all data is displayed in text box.");
+                InspectorUtilities.LogDebug("Cleaning up double null to make sure all data is displayed in text box.");
                 text = text.Replace("\0\0", "    ");
             }
 

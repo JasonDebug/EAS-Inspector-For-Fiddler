@@ -3,7 +3,7 @@
 This is an inspector which can be used with Fiddler.  
 
 To compile:
-	Install Fiddler 2.4.4.5 or later.
+	Install Fiddler v5.0.20182.28034 for .NET 4.6.1 or later.
 
 	Check the Post-event command line settings on the Build Events tab of the project's 
 	properties to be sure that the paths map to the Inspector folder of fiddler.
@@ -101,3 +101,8 @@ content type starting with application/vnd.ms-sync
 	Release EASInspector 1.4
 	Note that the addition for the EAS 16 fields are based-upon preliminary information and are for eductional purposes only.
 
+4/1/2019
+	Forked to https://github.com/JasonDebug/EAS-Inspector-For-Fiddler
+	- Decoupled from ASWBXML code
+	- Dependent on ASWBXMLHandler (https://github.com/JasonDebug/ASWBXMLHandler)
+	- Moved to .NET 4.6.1 to match current Fiddler version (v5.0.20182.28034 for .NET 4.6.1)

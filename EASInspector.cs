@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel.Channels;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-
 using Fiddler;
-using VisualSync;
-using EasInspector;
+using ASWBXML;
 
 namespace EASView
 {
@@ -232,7 +226,7 @@ namespace EASView
 
             base.AssignSession(oS);
 
-            EasInspector.InspectorUtilities.SessionId = session.id;
+            InspectorUtilities.SessionId = session.id;
             this.oEasViewControl.SetLabel1("Session: " + session.id);
         }
 
@@ -328,18 +322,15 @@ namespace EASView
             // Try to only decode valid EAS requests/responses
             try
             {
-                ASCommandResponse commandResponse = new ASCommandResponse(bytesFromFiddler);
+                ASWBXMLHandler byteHandler = new ASWBXMLHandler(bytesFromFiddler);
+                var rawXmlString = byteHandler.GetXmlString();
 
-                if (!string.IsNullOrEmpty(commandResponse.XMLString) && commandResponse.XMLString.Contains(@"<?xml"))
+                if (!string.IsNullOrEmpty(rawXmlString) && rawXmlString.StartsWith(@"<?xml"))
                 {
-                    this.oEasViewControl.SetRaw(commandResponse.XMLString);
-
-                    XmlDocument doc = commandResponse.XmlDoc;
-                    string outputDoc = InspectorUtilities.TransformXml(doc);
+                    this.oEasViewControl.SetRaw(rawXmlString);
+                    string outputDoc = InspectorUtilities.TransformXml(byteHandler.GetXmlDoc(false, true, true));
                     this.oEasViewControl.AppendLine(outputDoc);
                 }
-
-                commandResponse = null;
             }
             catch (Exception ex)
             {
